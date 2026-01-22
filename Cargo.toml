@@ -1,0 +1,27 @@
+[package]
+name = "ruapc-rdma-sys"
+version = "0.1.0"
+edition = "2024"
+authors = ["SF-Zhou"]
+description = "Low-level FFI bindings to libibverbs with type-safe device management for RDMA operations"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/SF-Zhou/ruapc-rdma-sys"
+readme = "README.md"
+rust-version = "1.85"
+
+[dependencies]
+libc = "0.2"
+schemars = "1.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+clap = { version = "4", features = ["derive"] }
+
+[[bin]]
+name = "ruapc-rdma-sys"
+path = "src/main.rs"
+
+[build-dependencies]
+bindgen = "0.72"
+pkg-config = "0.3"
+syn = { version = "2.0", features = ["full", "parsing"] }
+prettyplease = "0.2"
