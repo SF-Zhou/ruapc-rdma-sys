@@ -9,9 +9,16 @@ use std::borrow::Cow;
 /// Globally Unique Identifier for RDMA devices
 #[repr(transparent)]
 #[derive(Clone, Copy, Default)]
-pub struct Guid(pub u64);
+pub struct Guid(u64);
 
 impl Guid {
+    /// Creates a GUID from a u64 value in big-endian (network) byte order.
+    /// The provided value is assumed to already be in the internal representation
+    /// format and is stored as-is without additional byte-order conversion.
+    pub fn from_be(guid: u64) -> Self {
+        Self(guid)
+    }
+
     /// Converts GUID from network byte order to host byte order
     fn as_u64(&self) -> u64 {
         u64::from_be(self.0)
@@ -87,7 +94,7 @@ mod tests {
 
     #[test]
     fn test_guid_display() {
-        let guid = Guid(u64::to_be(0x506b0b03_0039e8a4));
+        let guid = Guid::from_be(u64::to_be(0x506b0b03_0039e8a4));
         assert_eq!(format!("{}", guid), "506b:0b03:0039:e8a4");
     }
 
