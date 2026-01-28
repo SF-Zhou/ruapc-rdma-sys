@@ -12,7 +12,9 @@ use std::borrow::Cow;
 pub struct Guid(u64);
 
 impl Guid {
-    /// Creates a GUID from a big-endian u64 value
+    /// Creates a GUID from a u64 value in big-endian (network) byte order.
+    /// The provided value is assumed to already be in the internal representation
+    /// format and is stored as-is without additional byte-order conversion.
     pub fn from_be(guid: u64) -> Self {
         Self(guid)
     }
