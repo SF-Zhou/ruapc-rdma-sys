@@ -65,7 +65,7 @@ impl Device {
         config: &DeviceConfig,
     ) -> Result<Self> {
         let name = unsafe { Self::device_name(device) };
-        let guid = Guid(u64::from_be(unsafe { crate::ibv_get_device_guid(device) }));
+        let guid = Guid::from_be(unsafe { crate::ibv_get_device_guid(device) });
         let ibdev_path = unsafe {
             Path::new(std::ffi::OsStr::from_bytes(
                 CStr::from_ptr((*device).ibdev_path.as_ptr()).to_bytes(),
