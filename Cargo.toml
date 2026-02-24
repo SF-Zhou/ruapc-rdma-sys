@@ -1,6 +1,6 @@
 [package]
 name = "ruapc-rdma-sys"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 authors = ["SF-Zhou"]
 description = "Low-level FFI bindings to libibverbs with type-safe device management for RDMA operations"
