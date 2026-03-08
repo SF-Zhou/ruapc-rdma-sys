@@ -108,6 +108,10 @@ impl Devices {
 
             let index = devices.len();
             let device = Device::open(device, index, config)?;
+            if config.skip_inactive_port && device.info().ports.is_empty() {
+                continue;
+            }
+
             devices.push(Arc::new(device));
         }
         if devices.is_empty() {
